@@ -4,20 +4,21 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'hatsnipe/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "hatsnipe"
+  spec.name          = 'hatsnipe'
   spec.version       = Hatsnipe::VERSION
-  spec.authors       = ["Clarke Brunsdon"]
-  spec.email         = ["clarke@freerunningtechnologies.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.authors       = ['Clarke Brunsdon', 'Kevin Attfield']
+  spec.email         = ['clarke@freerunningtechnologies.com', 'kevin@freerunningtechnologies.com']
+  spec.summary       = %q{Snipes people that wear hats. Or snipes hats for people. Who knows.}
+  spec.homepage      = ''
+  spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
-  spec.add_development_dependency "bundler", "~> 1.7"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_dependency 'faraday'
+
+  spec.add_development_dependency 'bundler', "~> 1.7"
+  spec.add_development_dependency 'rake', "~> 10.0"
 end

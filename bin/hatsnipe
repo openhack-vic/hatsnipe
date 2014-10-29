@@ -1,3 +1,16 @@
 #!/usr/bin/env ruby
 
 puts "Hatsniping"
+
+
+require 'faraday'
+conn = Faraday.new(:url => 'http://steamcommunity.com/') do |faraday|
+  faraday.request  :url_encoded             # form-encode POST params
+  faraday.response :logger                  # log requests to STDOUT
+  faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+end
+
+conn.get do |req|
+  req.url '/market/recent'
+  req.headers['Content-Type'] = 'application/json'
+end
