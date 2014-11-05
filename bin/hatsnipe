@@ -1,23 +1,6 @@
 #!/usr/bin/env ruby
+require 'hatsnipe'
 
 puts "Hatsniping"
-
-require 'faraday'
-conn = Faraday.new(:url => 'http://steamcommunity.com/') do |faraday|
-  faraday.request  :url_encoded             # form-encode POST params
-  faraday.response :logger                  # log requests to STDOUT
-  faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-end
-
-req = conn.get do |req|
-  req.url '/market/recent?country=CA&language=english&currency=1&appid=440'
-  req.headers['Content-Type'] = 'application/json'
-end
-
-require 'json'
-json = JSON.parse req.body
-tf2_listings = json["listinginfo"].select { |key, value| value['asset']['appid'] == 440 }
-
-require 'hatsrank'
-parser = Hatsrank::ListingParser.new json['listinginfo'], json['assets']
-listings = parser.listings
+scout = Hatsnipe::Scout.new
+puts scout.get_listings

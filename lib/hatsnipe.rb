@@ -1,4 +1,5 @@
 require "hatsnipe/version"
+require "hatsnipe/scout"
 require "hatsnipe/spy"
 
 module Hatsnipe
