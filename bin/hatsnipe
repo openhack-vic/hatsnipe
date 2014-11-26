@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'hatsnipe'
 
-puts "Hatsniping"
-scout = Hatsnipe::Scout.new
-puts scout.get_listings
+puts "Put Dispenser Here!"
+engineer = Hatsnipe::Engineer.new
+engineer.nest
