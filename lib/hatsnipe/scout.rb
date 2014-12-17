@@ -17,6 +17,19 @@ module Hatsnipe
       parser.listings
     end
 
+    def fetch item_name
+      req = connection.get do |req|
+        req.url "/market/listings/440/#{URI.escape item_name}/render/?query=&start=0&count=40&country=CA&language=english&currency=1"
+        req.headers['Content-Type'] = 'application/json'
+      end
+
+      json = JSON.parse req.body
+      tf2_listings = json["listinginfo"].select { |key, value| value['asset']['appid'] == 440 }
+
+      parser = Hatsrank::ListingParser.new json['listinginfo'], json['assets']
+      parser.listings
+    end
+
     private
 
     def connection
